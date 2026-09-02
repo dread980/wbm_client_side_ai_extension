@@ -65,6 +65,22 @@ function createStreamingOverlay(action, targetLanguage, showInsights) {
     html +=   `</div>`;
   }
 
+  if (action === "summarize") {
+    html += `
+    <div class="cmp-section cmp-chat-section" style="margin-top: 10px">
+      <div class="cmp-chat-messages" id="cmp-chat-messages"></div>
+      <div class="cmp-chat-input-row">
+        <input type="text" class="cmp-chat-input" id="cmp-chat-input" placeholder="Preparing chat..." disabled>
+        <button class="cmp-chat-send-btn" id="cmp-chat-send-btn" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>`;
+  }
+
   html += `</div>`;
 
   if (hasTabs) {
@@ -111,22 +127,6 @@ function createStreamingOverlay(action, targetLanguage, showInsights) {
   html +=     `</div>`;
   html +=   `</div>`;
   html += `</div>`;
-
-  if (action === "summarize") {
-    html += `
-    <div class="cmp-section cmp-chat-section" style="margin-top: 10px">
-      <div class="cmp-chat-messages" id="cmp-chat-messages"></div>
-      <div class="cmp-chat-input-row">
-        <input type="text" class="cmp-chat-input" id="cmp-chat-input" placeholder="Preparing chat..." disabled>
-        <button class="cmp-chat-send-btn" id="cmp-chat-send-btn" disabled>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="22" y1="2" x2="11" y2="13"></line>
-            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-          </svg>
-        </button>
-      </div>
-    </div>`;
-  }
 
   content.innerHTML = html;
   shadow.appendChild(popup);
