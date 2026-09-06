@@ -61,7 +61,10 @@ Four runtime contexts participate:
 │   │   ├── base-popup.js      # Shared popup shell (shadow host, header, resize)
 │   │   ├── shadow-dom.js      # Shadow-DOM host creation
 │   │   ├── resizable.js       # Drag-to-resize behaviour
-│   │   ├── overlay.js         # Streaming/comparison/insights/chat UI
+│   │   ├── utils.js           # Shared UI helpers (LANGUAGES, escapeHtml, formatCompareDate)
+│   │   ├── streaming-analyze.js # Summary/quality streaming overlay + process logs + insights
+│   │   ├── comparison.js      # Snapshot comparison input/result/loading + modals
+│   │   ├── chat.js            # Persistent chat (streaming, stop, history restore) + CHAT_* listener
 │   │   ├── quality-popup.js   # Quality timings + HTTP-status badge UI
 │   │   └── styles.js          # hostStyle + compareStyle (shadow CSS)
 │   └── utils/
@@ -94,7 +97,7 @@ Key patterns:
 
 - **Background → tab streaming**: the background drives long-running AI work and pushes incremental results with `chrome.tabs.sendMessage` (e.g. `STREAM_CHUNK`, `COMPARE_PROGRESS`, `CHAT_STREAM_CHUNK`). The content script just renders.
 - **Content → background request/response**: interactive requests (e.g. `CHAT_QUESTION_START`, `COMPARE_PARSE_INPUT`, `TRANSLATE_TEXT`) use `chrome.runtime.sendMessage` with `return true;` to keep the channel open while async work completes.
-- **Content-script listeners** in `content.js` are a thin router: each `request.type` is delegated to a function in `ui/overlay.js` (e.g. `showCompareOverlay`, `createStreamingOverlay`, `appendStreamChunk`).
+- **Content-script listeners** in `content.js` are a thin router: each `request.type` is delegated to a function in `ui/` (e.g. `showCompareOverlay`, `createStreamingOverlay`, `appendStreamChunk`).
 
 ---
 
