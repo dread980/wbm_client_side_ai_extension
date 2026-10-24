@@ -313,7 +313,7 @@ function appendInsights(tabLang, insights) {
       html += `<div class="wbm-faq-answer">${answerHtml}</div>`;
       html += '</div>';
     });
-    html += '<div></div>';
+    html += '</div></div>';
   }
 
   if (insights.famousPeople?.length) {
