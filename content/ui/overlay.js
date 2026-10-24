@@ -306,7 +306,7 @@ function appendInsights(tabLang, insights) {
     insights.faqs.forEach (faq => {
       const answerHtml = marked.parse(faq.answer);
       html += '<div class="wbm-faq-item">';
-      html += '<div class="wbm-faq-question" roles="button" tabindex="0">';
+      html += '<div class="wbm-faq-question" role="button" tabindex="0">';
       html += `<span>${escapeHtml (faq.question)}</span>`;
       html += '<span class="wbm-faq-icon">+</span>';
       html += '</div>';
